@@ -1,0 +1,16 @@
+.current-temp {
+  font-size: 60px;
+}
+.units {
+  position: relative;
+  top: -35px;
+}
+.col-sm-4 {
+  font-size: 18px;
+}
+#celsius:hover {
+  cursor: pointer;
+}
+#fahrenheit:hover {
+  cursor: pointer;
+}
