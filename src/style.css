@@ -14,3 +14,7 @@
 #fahrenheit:hover {
   cursor: pointer;
 }
+small {
+  display: block;
+  padding-top: 15px;
+}
