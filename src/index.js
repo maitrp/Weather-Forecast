@@ -70,11 +70,11 @@ function showWeatherForecast(response) {
   let thirdDayTemp = document.querySelector("#third-day-temp");
   let fourthDayTemp = document.querySelector("#fourth-day-temp");
   let fifthDayTemp = document.querySelector("#fifth-day-temp");
-  firstDay.innerHTML = days[now.getDay() + 1];
-  secondDay.innerHTML = days[now.getDay() + 2];
-  thirdDay.innerHTML = days[now.getDay() + 3];
-  fourthDay.innerHTML = days[now.getDay() + 4];
-  fifthDay.innerHTML = days[now.getDay() + 5];
+  firstDay.innerHTML = days[new Date(now.getTime() + 86400000).getDay()];
+  secondDay.innerHTML = days[new Date(now.getTime() + 86400000 * 2).getDay()];
+  thirdDay.innerHTML = days[new Date(now.getTime() + 86400000 * 3).getDay()];
+  fourthDay.innerHTML = days[new Date(now.getTime() + 86400000 * 4).getDay()];
+  fifthDay.innerHTML = days[new Date(now.getTime() + 86400000 * 5).getDay()];
   firstDayTemp.innerHTML = `${Math.round(
     response.data.list[9].main.temp_max
   )}° ${Math.round(response.data.list[4].main.temp_min)}°`;
