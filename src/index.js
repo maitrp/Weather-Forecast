@@ -41,30 +41,37 @@ function showCurrentWeather(response) {
   );
   icon.setAttribute("alt", response.data.weather[0].description);
 
-  // Convert temperature unit
-  function convertTemp(event) {
-    if (event.target === celsius) {
-      currentTemp.innerHTML = Math.round(response.data.main.temp);
-      document.getElementById(`celsius`).style.color = `black`;
-      document.getElementById(`fahrenheit`).style.color = `gray`;
-      document.getElementById(`celsius`).style.cursor = `none`;
-      document.getElementById(`fahrenheit`).style.cursor = `pointer`;
-    } else if (event.target === fahrenheit) {
-      currentTemp.innerHTML = Math.round(
-        (response.data.main.temp * 9) / 5 + 32
-      );
-      document.getElementById(`fahrenheit`).style.color = `black`;
-      document.getElementById(`celsius`).style.color = `gray`;
-      document.getElementById(`fahrenheit`).style.cursor = `none`;
-      document.getElementById(`celsius`).style.cursor = `pointer`;
-    }
-  }
-
-  let celsius = document.querySelector("#celsius");
-  let fahrenheit = document.querySelector("#fahrenheit");
-  celsius.addEventListener("click", convertTemp);
-  fahrenheit.addEventListener("click", convertTemp);
+  // Store Celsius Temperature as a global variable & convert temperature into Celsius as default
+  celsiusTemp = response.data.main.temp;
+  fahrenheit.classList.remove("active");
+  fahrenheit.classList.add("inactive");
+  celsius.classList.add("active");
+  celsius.classList.remove("inactive");
 }
+
+// Convert temperature unit
+function convertTemp(event) {
+  let currentTemp = document.querySelector("#current-temp");
+  if (event.target === celsius) {
+    currentTemp.innerHTML = Math.round(celsiusTemp);
+    fahrenheit.classList.remove("active");
+    fahrenheit.classList.add("inactive");
+    celsius.classList.add("active");
+    celsius.classList.remove("inactive");
+  } else if (event.target === fahrenheit) {
+    currentTemp.innerHTML = Math.round((celsiusTemp * 9) / 5 + 32);
+    celsius.classList.remove("active");
+    celsius.classList.add("inactive");
+    fahrenheit.classList.add("active");
+    fahrenheit.classList.remove("inactive");
+  }
+}
+
+let celsiusTemp = null;
+let celsius = document.querySelector("#celsius");
+let fahrenheit = document.querySelector("#fahrenheit");
+celsius.addEventListener("click", convertTemp);
+fahrenheit.addEventListener("click", convertTemp);
 
 // Show weather forecast
 function showWeatherForecast(response) {

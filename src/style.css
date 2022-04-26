@@ -8,11 +8,15 @@
 .col-sm-4 {
   font-size: 18px;
 }
-#celsius:hover {
+
+.units .inactive {
   cursor: pointer;
+  color: gray;
 }
-#fahrenheit:hover {
-  cursor: pointer;
+
+.units .active {
+  cursor: none;
+  color: black;
 }
 small {
   display: block;
