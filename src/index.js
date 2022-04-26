@@ -1,4 +1,4 @@
-// Coding for displaying current day & time
+// Display current day & time
 let now = new Date();
 let hours = now.getHours();
 if (hours < 10) {
@@ -33,6 +33,15 @@ function showCurrentWeather(response) {
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = Math.round(response.data.main.temp);
 
+  // Show weather icon
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  icon.setAttribute("alt", response.data.weather[0].description);
+
+  // Convert temperature unit
   function convertTemp(event) {
     if (event.target === celsius) {
       currentTemp.innerHTML = Math.round(response.data.main.temp);
@@ -59,7 +68,6 @@ function showCurrentWeather(response) {
 
 // Show weather forecast
 function showWeatherForecast(response) {
-  console.log(response);
   let firstDay = document.querySelector("#first-day");
   let secondDay = document.querySelector("#second-day");
   let thirdDay = document.querySelector("#third-day");
@@ -101,7 +109,6 @@ function submitPosition(event) {
       let longitude = position.coords.longitude;
       let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
       let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
-      console.log(apiForecastUrl);
       axios.get(apiCurrentDayUrl).then(showCurrentWeather);
       axios.get(apiForecastUrl).then(showWeatherForecast);
     }
