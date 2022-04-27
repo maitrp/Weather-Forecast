@@ -122,9 +122,8 @@ function submitPosition(event) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else if (event.target === searchForm) {
     let searchInput = document.querySelector("#search-box");
-    city.innerHTML = searchInput.value;
-    let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.innerHTML}&appid=${apiKey}&units=${unit}`;
-    let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city.innerHTML}&appid=${apiKey}&units=${unit}`;
+    let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=${unit}`;
+    let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInput.value}&appid=${apiKey}&units=${unit}`;
     axios.get(apiCurrentDayUrl).then(showCurrentWeather);
     axios.get(apiForecastUrl).then(showWeatherForecast);
   }
@@ -137,3 +136,12 @@ let currentLocation = document.querySelector("#current-location");
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", submitPosition);
 currentLocation.addEventListener("submit", submitPosition);
+
+function showDefaultCity() {
+  let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=Hanoi&appid=${apiKey}&units=${unit}`;
+  let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=Hanoi&appid=${apiKey}&units=${unit}`;
+  axios.get(apiCurrentDayUrl).then(showCurrentWeather);
+  axios.get(apiForecastUrl).then(showWeatherForecast);
+}
+
+showDefaultCity();
