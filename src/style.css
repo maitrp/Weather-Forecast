@@ -1,19 +1,57 @@
-.current-temp {
-  font-size: 60px;
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+}
+.material-icons {
+  max-width: 50px;
+}
+button {
+  max-width: 120px;
+}
+#current-temp {
+  font-size: 50px;
+  line-height: 50px;
+}
+#icon {
+  vertical-align: top;
+  height: 60px;
 }
 .units {
   position: relative;
-  top: -35px;
+  top: -25px;
 }
-.col-sm-4 {
+.icon-temperature,
+.description-humidity-wind,
+.location-date {
+  padding: 0;
+  margin: 0;
+}
+#description,
+#humidity,
+#wind {
+  margin: 0;
+  font-size: 13px;
+}
+#city {
+  font-size: 25px;
+  line-height: 20px;
+}
+#current-day {
   font-size: 18px;
+  margin-top: 5px;
 }
-
+#city,
+#current-day {
+  margin-left: 0;
+  margin-right: 10px;
+}
+#description:first-letter {
+  text-transform: capitalize;
+}
 .units .inactive {
   cursor: pointer;
   color: gray;
 }
-
 .units .active {
   cursor: none;
   color: black;

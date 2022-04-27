@@ -20,37 +20,30 @@
   </head>
   <body>
     <div class="container">
-      <div class="card mt-5 w-50">
+      <div class="card mt-5">
         <div class="card-body">
           <div class="row">
-            <form class="input-group mb-4 col" id="search-form">
+            <form class="input-group mb-4" id="search-form">
               <input
                 type="text"
-                class="rounded-pill form-control"
-                placeholder="Search City or Zip Code"
+                class="rounded-pill form-control col-7"
+                placeholder="Search by City or Zip Code"
                 id="search-box"
+                autocomplete="off"
               />
-              <span>
-                <input
-                  type="submit"
-                  value="search"
-                  class="material-icons btn btn-light"
-                />
-              </span>
-            </form>
-            <form class="col-3" id="current-location">
               <input
                 type="submit"
-                value="Your location"
-                class="btn btn-secondary"
+                value="search"
+                class="material-icons btn btn-light col-2 me-3 ms-1"
               />
+              <button class="btn btn-secondary col-3" id="current-location">
+                Your location
+              </button>
             </form>
           </div>
-          <div class="row mb-5">
-            <div class="col-sm-6">
-              <span class="current-temp">
-                <img src="" alt="" id="icon" /><span id="current-temp"></span
-              ></span>
+          <div class="row mb-4">
+            <div class="col-5 icon-temperature">
+              <img src="" alt="" id="icon" /><span id="current-temp"></span>
               <span class="units"
                 ><span id="celsius" class="active">°C</span>
                 <span class="text-secondary">
@@ -58,14 +51,14 @@
                 >
               </span>
             </div>
-            <div class="col-sm-3 text-secondary">
+            <div class="col-3 text-secondary description-humidity-wind">
+              <div id="description"></div>
               <div class="row" id="humidity"></div>
               <div class="row" id="wind"></div>
             </div>
-            <div class="col-sm-3">
-              <div class="row fs-4" id="city"></div>
-              <div class="row text-secondary" id="current-day">Wednesday</div>
-              <div class="row text-secondary" id="description">Cloudy</div>
+            <div class="col-4 text-end location-date">
+              <div id="city"></div>
+              <div class="text-secondary" id="current-day"></div>
             </div>
           </div>
           <div class="row ms-2">

@@ -21,7 +21,15 @@ let day = days[now.getDay()];
 let currentDay = document.querySelector("#current-day");
 currentDay.innerHTML = `${day} ${hours}:${minutes}`;
 
-// Show weather
+// Show weather of the default city
+function showDefaultCity(city) {
+  let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+  let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${unit}`;
+  axios.get(apiCurrentDayUrl).then(showCurrentWeather);
+  axios.get(apiForecastUrl).then(showWeatherForecast);
+}
+
+// Show weather when search or click button "Your location"
 function showCurrentWeather(response) {
   let description = document.querySelector("#description");
   description.innerHTML = response.data.weather[0].description;
@@ -49,6 +57,28 @@ function showCurrentWeather(response) {
   celsius.classList.remove("inactive");
 }
 
+// Search for a city or click button "Your location"
+function submitPosition(event) {
+  event.preventDefault();
+  if (event.target === currentLocation) {
+    function showPosition(position) {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
+      let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
+      axios.get(apiCurrentDayUrl).then(showCurrentWeather);
+      axios.get(apiForecastUrl).then(showWeatherForecast);
+    }
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else if (event.target === searchForm) {
+    let searchInput = document.querySelector("#search-box");
+    let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=${unit}`;
+    let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInput.value}&appid=${apiKey}&units=${unit}`;
+    axios.get(apiCurrentDayUrl).then(showCurrentWeather);
+    axios.get(apiForecastUrl).then(showWeatherForecast);
+  }
+}
+
 // Convert temperature unit
 function convertTemp(event) {
   let currentTemp = document.querySelector("#current-temp");
@@ -66,12 +96,6 @@ function convertTemp(event) {
     fahrenheit.classList.remove("inactive");
   }
 }
-
-let celsiusTemp = null;
-let celsius = document.querySelector("#celsius");
-let fahrenheit = document.querySelector("#fahrenheit");
-celsius.addEventListener("click", convertTemp);
-fahrenheit.addEventListener("click", convertTemp);
 
 // Show weather forecast
 function showWeatherForecast(response) {
@@ -107,41 +131,17 @@ function showWeatherForecast(response) {
   )}° ${Math.round(response.data.list[35].main.temp_min)}°`;
 }
 
-// Search for a city or select current location
-function submitPosition(event) {
-  event.preventDefault();
-  if (event.target === currentLocation) {
-    function showPosition(position) {
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
-      let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
-      let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
-      axios.get(apiCurrentDayUrl).then(showCurrentWeather);
-      axios.get(apiForecastUrl).then(showWeatherForecast);
-    }
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else if (event.target === searchForm) {
-    let searchInput = document.querySelector("#search-box");
-    let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=${unit}`;
-    let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInput.value}&appid=${apiKey}&units=${unit}`;
-    axios.get(apiCurrentDayUrl).then(showCurrentWeather);
-    axios.get(apiForecastUrl).then(showWeatherForecast);
-  }
-}
-
 let city = document.querySelector("#city");
 let unit = "metric";
 let apiKey = `11b3cb871ddaf6251b502e31b790f412`;
 let currentLocation = document.querySelector("#current-location");
 let searchForm = document.querySelector("#search-form");
+let celsiusTemp = null;
+let celsius = document.querySelector("#celsius");
+let fahrenheit = document.querySelector("#fahrenheit");
+celsius.addEventListener("click", convertTemp);
+fahrenheit.addEventListener("click", convertTemp);
 searchForm.addEventListener("submit", submitPosition);
-currentLocation.addEventListener("submit", submitPosition);
+currentLocation.addEventListener("click", submitPosition);
 
-function showDefaultCity() {
-  let apiCurrentDayUrl = `https://api.openweathermap.org/data/2.5/weather?q=Hanoi&appid=${apiKey}&units=${unit}`;
-  let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=Hanoi&appid=${apiKey}&units=${unit}`;
-  axios.get(apiCurrentDayUrl).then(showCurrentWeather);
-  axios.get(apiForecastUrl).then(showWeatherForecast);
-}
-
-showDefaultCity();
+showDefaultCity("Hanoi");
