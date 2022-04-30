@@ -27,7 +27,7 @@
               <input
                 type="text"
                 class="rounded-pill form-control col-7"
-                placeholder="Search by City or Zip Code"
+                placeholder="Enter a city to search for weather"
                 id="search-box"
                 autocomplete="off"
               />
@@ -37,7 +37,7 @@
                 class="material-icons btn btn-light col-2 me-3 ms-1"
               />
               <button class="btn btn-secondary col-3" id="current-location">
-                Your location
+                My location
               </button>
             </form>
           </div>
@@ -61,33 +61,7 @@
               <div class="text-secondary" id="current-day"></div>
             </div>
           </div>
-          <div class="row ms-2">
-            <div class="col">
-              <div class="row" id="first-day">Thu</div>
-              <div class="row">☁</div>
-              <div class="row" id="first-day-temp">23° 20°</div>
-            </div>
-            <div class="col">
-              <div class="row" id="second-day">Fri</div>
-              <div class="row">🌥</div>
-              <div class="row" id="second-day-temp">32° 23°</div>
-            </div>
-            <div class="col">
-              <div class="row" id="third-day">Sat</div>
-              <div class="row">⛅</div>
-              <div class="row" id="third-day-temp">33° 21°</div>
-            </div>
-            <div class="col">
-              <div class="row" id="fourth-day">Sun</div>
-              <div class="row">☁</div>
-              <div class="row" id="fourth-day-temp">24° 18°</div>
-            </div>
-            <div class="col">
-              <div class="row" id="fifth-day">Mon</div>
-              <div class="row">☀</div>
-              <div class="row" id="fifth-day-temp">24° 19°</div>
-            </div>
-          </div>
+          <div id="weather-forecast"></div>
         </div>
       </div>
       <small>
