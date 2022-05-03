@@ -1,4 +1,4 @@
-// Display current day & time
+// Display the current day & time
 let now = new Date();
 let hours = now.getHours();
 if (hours < 10) {
@@ -117,24 +117,37 @@ function showWeatherForecast(response) {
   )}%`;
 }
 
-// Convert current temperature units
+// Convert current & forecast temperature units
 function convertTemp(event) {
   let currentTemp = document.querySelector("#current-temp");
   let forecastTempMax = document.querySelectorAll(".forecast-temp-max");
-  console.log(forecastTempMax);
-
+  let forecastTempMin = document.querySelectorAll(".forecast-temp-min");
   if (event.target === celsius) {
     currentTemp.innerHTML = Math.round(celsiusTemp);
+    forecastData.forEach(function (forecastTemp, index) {
+      if (index < 7) {
+        forecastTempMax[index].innerHTML = `${Math.round(
+          forecastTemp.temp.max
+        )}°`;
+        forecastTempMin[index].innerHTML = `${Math.round(
+          forecastTemp.temp.min
+        )}°`;
+      }
+    });
     fahrenheit.classList.remove("active");
     fahrenheit.classList.add("inactive");
     celsius.classList.add("active");
     celsius.classList.remove("inactive");
   } else if (event.target === fahrenheit) {
     currentTemp.innerHTML = Math.round((celsiusTemp * 9) / 5 + 32);
-    forecastData.forEach(function (unit, index) {
+    forecastData.forEach(function (forecastTemp, index) {
       if (index < 7) {
-        forecastTempMax.innerHTML = `${(unit.temp.max * 9) / 5 + 32}`;
-        console.log(forecastTempMax.innerHTML);
+        forecastTempMax[index].innerHTML = `${Math.round(
+          (forecastTemp.temp.max * 9) / 5 + 32
+        )}°`;
+        forecastTempMin[index].innerHTML = `${Math.round(
+          (forecastTemp.temp.min * 9) / 5 + 32
+        )}°`;
       }
     });
     celsius.classList.remove("active");
