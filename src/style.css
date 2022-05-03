@@ -2,6 +2,10 @@
   margin: 0 auto;
   max-width: 600px;
 }
+
+.card {
+  box-shadow: 2px 2px 20px rgba(77, 77, 1, 0.3);
+}
 .material-icons {
   max-width: 50px;
 }
@@ -59,4 +63,9 @@ button {
 small {
   display: block;
   padding-top: 15px;
+}
+
+#forecast-column {
+  color: yellow;
+  background-color: black;
 }

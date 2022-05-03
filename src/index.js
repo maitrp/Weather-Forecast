@@ -47,7 +47,7 @@ function showCurrentWeather(response) {
   );
   icon.setAttribute("alt", response.data.weather[0].description);
 
-  // Store Celsius Temperature as a global variable & convert temperature into Celsius as default
+  // Store Celsius Temperature as a global variable to convert temperature into Celsius as default
   celsiusTemp = response.data.main.temp;
   fahrenheit.classList.remove("active");
   fahrenheit.classList.add("inactive");
@@ -77,37 +77,30 @@ function getCurrentWeatherAPI(event) {
   }
 }
 
-// Format day of weather forecast
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return (day = days[date.getDay()]);
-}
-
 // Show weather forecast
 function showWeatherForecast(response) {
-  console.log(response.data);
-  let forecastData = response.data.daily;
+  forecastData = response.data.daily;
   let weatherForecast = document.querySelector("#weather-forecast");
   let weatherForecastHTML = `<div class="row">`;
   forecastData.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    let date = new Date(forecastDay.dt * 1000);
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let day = days[date.getDay()];
+    if (index < 7) {
       weatherForecastHTML =
         weatherForecastHTML +
-        `<div class="col">
-                <div class="weather-forecast-day" id="first-day">${formatDay(
-                  forecastDay.dt
-                )}</div>
+        `<div class="col forecast-column">
+                <div class="weather-forecast-day" id="first-day">${day}</div>
                 <img src="http://openweathermap.org/img/wn/${
                   forecastDay.weather[0].icon
                 }@2x.png" alt="${
           forecastDay.weather[0].description
         }" width="50" />
-                <div class="weather-forecast-temp" id="first-day-temp">
-                  <span class="weather-forecast-temp-max">${Math.round(
+                <div class="forecast-temp">
+                  <span class="forecast-temp-max">${Math.round(
                     forecastDay.temp.max
                   )}°</span>
-                  <span class="weather-forecast-temp-min text-secondary"
+                  <span class="forecast-temp-min text-secondary"
                     >${Math.round(forecastDay.temp.min)}°</span
                   >
                 </div>
@@ -116,11 +109,20 @@ function showWeatherForecast(response) {
   });
   weatherForecastHTML = weatherForecastHTML + `</div>`;
   weatherForecast.innerHTML = weatherForecastHTML;
+
+  // Get current precipitation via forecast API
+  let precipitation = document.querySelector("#precipitation");
+  precipitation.innerHTML = `Precipitation: ${Math.round(
+    forecastData[0].pop * 100
+  )}%`;
 }
 
-// Convert temperature unit
+// Convert current temperature units
 function convertTemp(event) {
   let currentTemp = document.querySelector("#current-temp");
+  let forecastTempMax = document.querySelectorAll(".forecast-temp-max");
+  console.log(forecastTempMax);
+
   if (event.target === celsius) {
     currentTemp.innerHTML = Math.round(celsiusTemp);
     fahrenheit.classList.remove("active");
@@ -129,6 +131,12 @@ function convertTemp(event) {
     celsius.classList.remove("inactive");
   } else if (event.target === fahrenheit) {
     currentTemp.innerHTML = Math.round((celsiusTemp * 9) / 5 + 32);
+    forecastData.forEach(function (unit, index) {
+      if (index < 7) {
+        forecastTempMax.innerHTML = `${(unit.temp.max * 9) / 5 + 32}`;
+        console.log(forecastTempMax.innerHTML);
+      }
+    });
     celsius.classList.remove("active");
     celsius.classList.add("inactive");
     fahrenheit.classList.add("active");
@@ -142,6 +150,7 @@ let apiKey = `11b3cb871ddaf6251b502e31b790f412`;
 let currentLocation = document.querySelector("#current-location");
 let searchForm = document.querySelector("#search-form");
 let celsiusTemp = null;
+let forecastData = null;
 let celsius = document.querySelector("#celsius");
 let fahrenheit = document.querySelector("#fahrenheit");
 celsius.addEventListener("click", convertTemp);
