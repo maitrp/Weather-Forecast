@@ -32,7 +32,7 @@ function showCurrentWeather(response) {
   let description = document.querySelector("#description");
   description.innerHTML = response.data.weather[0].description;
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+  humidity.innerHTML = `${response.data.main.humidity}%`;
   let wind = document.querySelector("#wind");
   wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed * 3.6)} km/h`;
   city.innerHTML = response.data.name;
@@ -57,6 +57,32 @@ function showCurrentWeather(response) {
   // Get API & call for weather forecast
   let apiForecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&appid=${apiKey}&units=${unit}`;
   axios.get(apiForecastUrl).then(showWeatherForecast);
+
+  // Call function to change background image
+  currentTime = response.data.dt;
+  changeBackgroundImage(currentTime);
+}
+
+// Change image background per time of the day
+function changeBackgroundImage() {
+  let date = new Date(currentTime * 1000);
+  let hours = date.getHours();
+  if (hours <= 6) {
+    document.body.style.backgroundImage = "url(images/night.svg)";
+    document.body.style.backgroundSize = "cover";
+  } else if (hours <= 12) {
+    document.body.style.backgroundImage = "url(images/morning.svg)";
+    document.body.style.backgroundPosition = "top -120px right -150px";
+    document.body.style.backgroundSize = "2000px 1200px";
+  } else if (hours <= 18) {
+    document.body.style.backgroundImage = "url(images/afternoon.svg)";
+    document.body.style.backgroundPosition = "top";
+    document.body.style.backgroundSize = "cover";
+  } else if (hours <= 24) {
+    document.body.style.backgroundImage = "url(images/evening.svg)";
+    document.body.style.backgroundPosition = "top left -130px";
+    document.body.style.backgroundSize = "1500px";
+  }
 }
 
 // Get API for current weather when search for a city or click button "Your location"
@@ -79,18 +105,19 @@ function getCurrentWeatherAPI(event) {
 
 // Show weather forecast
 function showWeatherForecast(response) {
-  forecastData = response.data.daily;
+  console.log(new Date(response.data.daily[1].dt * 1000));
+  dailyForecast = response.data.daily;
+  currentForecast = response.data.current;
   let weatherForecast = document.querySelector("#weather-forecast");
   let weatherForecastHTML = `<div class="row">`;
-  forecastData.forEach(function (forecastDay, index) {
+  dailyForecast.slice(1, 7).forEach(function (forecastDay, index) {
     let date = new Date(forecastDay.dt * 1000);
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     let day = days[date.getDay()];
     if (index < 7) {
       weatherForecastHTML =
         weatherForecastHTML +
-        `<div class="col forecast-column">
-                <div class="weather-forecast-day" id="first-day">${day}</div>
+        `<div class="col forecast-column"><div class="weather-forecast-day">${day}</div>
                 <img src="http://openweathermap.org/img/wn/${
                   forecastDay.weather[0].icon
                 }@2x.png" alt="${
@@ -99,8 +126,7 @@ function showWeatherForecast(response) {
                 <div class="forecast-temp">
                   <span class="forecast-temp-max">${Math.round(
                     forecastDay.temp.max
-                  )}°</span>
-                  <span class="forecast-temp-min text-secondary"
+                  )}°</span> <span class="forecast-temp-min text-secondary"
                     >${Math.round(forecastDay.temp.min)}°</span
                   >
                 </div>
@@ -110,11 +136,28 @@ function showWeatherForecast(response) {
   weatherForecastHTML = weatherForecastHTML + `</div>`;
   weatherForecast.innerHTML = weatherForecastHTML;
 
-  // Get current precipitation via forecast API
+  // Get current precipitation & UV Index via forecast API
   let precipitation = document.querySelector("#precipitation");
-  precipitation.innerHTML = `Precipitation: ${Math.round(
-    forecastData[0].pop * 100
-  )}%`;
+  let uvi = document.querySelector("#uvi");
+  precipitation.innerHTML = `${Math.round(dailyForecast[0].pop * 100)}%`;
+  uvi.innerHTML = `UV Index: <span id="rateColor"> ${Math.round(
+    currentForecast.uvi
+  )}, ${rateUVI()}</span>`;
+}
+
+// Rate the UV Index
+function rateUVI() {
+  if (currentForecast.uvi < 3) {
+    return "Low";
+  } else if (currentForecast.uvi < 6) {
+    return "Moderate";
+  } else if (currentForecast.uvi < 8) {
+    return "High";
+  } else if (currentForecast.uvi < 11) {
+    return "Very high";
+  } else {
+    return "Extreme";
+  }
 }
 
 // Convert current & forecast temperature units
@@ -124,15 +167,13 @@ function convertTemp(event) {
   let forecastTempMin = document.querySelectorAll(".forecast-temp-min");
   if (event.target === celsius) {
     currentTemp.innerHTML = Math.round(celsiusTemp);
-    forecastData.forEach(function (forecastTemp, index) {
-      if (index < 7) {
-        forecastTempMax[index].innerHTML = `${Math.round(
-          forecastTemp.temp.max
-        )}°`;
-        forecastTempMin[index].innerHTML = `${Math.round(
-          forecastTemp.temp.min
-        )}°`;
-      }
+    dailyForecast.slice(1, 7).forEach(function (forecastTemp, index) {
+      forecastTempMax[index].innerHTML = `${Math.round(
+        forecastTemp.temp.max
+      )}°`;
+      forecastTempMin[index].innerHTML = `${Math.round(
+        forecastTemp.temp.min
+      )}°`;
     });
     fahrenheit.classList.remove("active");
     fahrenheit.classList.add("inactive");
@@ -140,15 +181,13 @@ function convertTemp(event) {
     celsius.classList.remove("inactive");
   } else if (event.target === fahrenheit) {
     currentTemp.innerHTML = Math.round((celsiusTemp * 9) / 5 + 32);
-    forecastData.forEach(function (forecastTemp, index) {
-      if (index < 7) {
-        forecastTempMax[index].innerHTML = `${Math.round(
-          (forecastTemp.temp.max * 9) / 5 + 32
-        )}°`;
-        forecastTempMin[index].innerHTML = `${Math.round(
-          (forecastTemp.temp.min * 9) / 5 + 32
-        )}°`;
-      }
+    dailyForecast.slice(1, 7).forEach(function (forecastTemp, index) {
+      forecastTempMax[index].innerHTML = `${Math.round(
+        (forecastTemp.temp.max * 9) / 5 + 32
+      )}°`;
+      forecastTempMin[index].innerHTML = `${Math.round(
+        (forecastTemp.temp.min * 9) / 5 + 32
+      )}°`;
     });
     celsius.classList.remove("active");
     celsius.classList.add("inactive");
@@ -163,7 +202,9 @@ let apiKey = `11b3cb871ddaf6251b502e31b790f412`;
 let currentLocation = document.querySelector("#current-location");
 let searchForm = document.querySelector("#search-form");
 let celsiusTemp = null;
-let forecastData = null;
+let dailyForecast = null;
+let currentForecast = null;
+let currentTime = null;
 let celsius = document.querySelector("#celsius");
 let fahrenheit = document.querySelector("#fahrenheit");
 celsius.addEventListener("click", convertTemp);

@@ -11,6 +11,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -27,7 +28,7 @@
               <input
                 type="text"
                 class="rounded-pill form-control col-7"
-                placeholder="Enter a city to search for weather"
+                placeholder="Enter a city to search"
                 id="search-box"
                 autocomplete="off"
               />
@@ -42,33 +43,46 @@
             </form>
           </div>
           <div class="row mb-4">
-            <div class="col-5 icon-temperature">
-              <img src="" alt="" id="icon" /><span id="current-temp"></span>
-              <span class="units"
-                ><span id="celsius" class="active">°C</span>
-                <span class="text-secondary">
-                  | <span id="fahrenheit" class="inactive">°F </span></span
+            <div class="col-5 icon-temperature align-self-center">
+              <img src="" alt="" id="icon" /><span id="current-temp"></span
+              ><span class="units"
+                ><span id="celsius" class="active">°C</span
+                ><span class="text-secondary"
+                  >|<span id="fahrenheit" class="inactive">°F</span></span
                 >
               </span>
             </div>
-            <div class="col-3 text-secondary description-humidity-wind">
-              <div id="precipitation"></div>
-              <div class="row" id="humidity"></div>
-              <div class="row" id="wind"></div>
+            <div class="col-3 text-secondary precip-humidity-wind">
+              <div>
+                <img
+                  class="precipitation-icon"
+                  src="images/precipitation.svg"
+                  alt="humidity"
+                  width="20"
+                /><span id="precipitation"></span
+                ><img
+                  class="humidity-icon"
+                  src="images/humidity.svg"
+                  alt="humidity"
+                  width="33"
+                /><span id="humidity"></span>
+              </div>
+              <div id="wind"></div>
+              <div id="uvi"></div>
             </div>
             <div class="col-4 text-end location-date">
               <div id="city"></div>
               <div class="text-secondary" id="current-day"></div>
-              <div id="description"></div>
+              <div class="text-secondary" id="description"></div>
             </div>
           </div>
-          <div id="weather-forecast"></div>
+          <div class="text-center" id="weather-forecast"></div>
         </div>
       </div>
       <small>
         <a href="https://github.com/maitrp/Weather-Forecast" target="_blank"
           >Open-source code</a
-        >, by Mai Trinh
+        >, by Mai TP
       </small>
     </div>
     <script src="src/index.js"></script>

@@ -1,17 +1,21 @@
 .container {
   margin: 0 auto;
   max-width: 600px;
+  font-family: "Space Mono", monospace;
 }
 
 .card {
   box-shadow: 2px 2px 20px rgba(77, 77, 1, 0.3);
+  background-color: rgb(242, 241, 241, 0.8);
+}
+#current-location {
+  max-width: 140px;
+  padding: 0;
 }
 .material-icons {
   max-width: 50px;
 }
-button {
-  max-width: 120px;
-}
+
 #current-temp {
   font-size: 50px;
   line-height: 50px;
@@ -25,29 +29,32 @@ button {
   top: -25px;
 }
 .icon-temperature,
-.description-humidity-wind,
+.precip-humidity-wind,
 .location-date {
   padding: 0;
   margin: 0;
 }
-#description,
+#precipitation,
 #humidity,
-#wind {
+#wind,
+#uvi {
   margin: 0;
   font-size: 13px;
 }
 #city {
-  font-size: 25px;
+  font-size: 22px;
   line-height: 20px;
 }
-#current-day {
-  font-size: 18px;
+#current-day,
+#description {
+  font-size: 15px;
   margin-top: 5px;
 }
 #city,
-#current-day {
+#current-day,
+#description {
   margin-left: 0;
-  margin-right: 10px;
+  margin-right: 0;
 }
 #description:first-letter {
   text-transform: capitalize;
@@ -62,10 +69,23 @@ button {
 }
 small {
   display: block;
-  padding-top: 15px;
+  margin-top: 15px;
+  padding-left: 10px;
+  background-color: rgb(242, 241, 241, 0.5);
+  border-radius: 5px;
 }
 
-#forecast-column {
-  color: yellow;
-  background-color: black;
+.forecast-column {
+  background-color: white;
+  padding: 1px 0;
+  margin: 0 1px;
+}
+
+.precipitation-icon {
+  position: relative;
+  bottom: 6px;
+}
+.humidity-icon {
+  position: relative;
+  bottom: 3px;
 }
