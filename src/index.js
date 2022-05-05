@@ -1,25 +1,31 @@
 // Display the current day & time
-let now = new Date();
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
+function showCurrentTime(timezone) {
+  let nowLocal = new Date();
+  let localTime = nowLocal.getTime();
+  let localOffset = nowLocal.getTimezoneOffset() * 60000;
+  let UTC = localTime + localOffset;
+  nowUTC = new Date(UTC + 1000 * timezone);
+  let hours = nowUTC.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = nowUTC.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let days = [
+    `Sunday`,
+    `Monday`,
+    `Tuesday`,
+    `Wednesday`,
+    `Thursday`,
+    `Friday`,
+    `Saturday`,
+  ];
+  let day = days[nowUTC.getDay()];
+  let currentDay = document.querySelector("#current-day");
+  currentDay.innerHTML = `${day} ${hours}:${minutes}`;
 }
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-let days = [
-  `Sunday`,
-  `Monday`,
-  `Tuesday`,
-  `Wednesday`,
-  `Thursday`,
-  `Friday`,
-  `Saturday`,
-];
-let day = days[now.getDay()];
-let currentDay = document.querySelector("#current-day");
-currentDay.innerHTML = `${day} ${hours}:${minutes}`;
 
 // Get API for current weather of the default city
 function showDefaultCity(city) {
@@ -59,29 +65,30 @@ function showCurrentWeather(response) {
   axios.get(apiForecastUrl).then(showWeatherForecast);
 
   // Call function to change background image
-  currentTime = response.data.dt;
+  currentTime = response.data.timezone;
+  showCurrentTime(currentTime);
   changeBackgroundImage(currentTime);
 }
 
 // Change image background per time of the day
 function changeBackgroundImage() {
-  let date = new Date(currentTime * 1000);
-  let hours = date.getHours();
-  if (hours <= 6) {
+  let hours = nowUTC.getHours();
+  if (hours < 6) {
     document.body.style.backgroundImage = "url(images/night.svg)";
     document.body.style.backgroundSize = "cover";
-  } else if (hours <= 12) {
+    document.body.style.backgroundPosition = "center -200px";
+  } else if (hours < 12) {
     document.body.style.backgroundImage = "url(images/morning.svg)";
-    document.body.style.backgroundPosition = "top -120px right -150px";
-    document.body.style.backgroundSize = "2000px 1200px";
-  } else if (hours <= 18) {
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+  } else if (hours < 18) {
     document.body.style.backgroundImage = "url(images/afternoon.svg)";
     document.body.style.backgroundPosition = "top";
     document.body.style.backgroundSize = "cover";
-  } else if (hours <= 24) {
+  } else if (hours < 24) {
     document.body.style.backgroundImage = "url(images/evening.svg)";
-    document.body.style.backgroundPosition = "top left -130px";
-    document.body.style.backgroundSize = "1500px";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "top -120px left";
   }
 }
 
@@ -105,7 +112,6 @@ function getCurrentWeatherAPI(event) {
 
 // Show weather forecast
 function showWeatherForecast(response) {
-  console.log(new Date(response.data.daily[1].dt * 1000));
   dailyForecast = response.data.daily;
   currentForecast = response.data.current;
   let weatherForecast = document.querySelector("#weather-forecast");
@@ -140,20 +146,31 @@ function showWeatherForecast(response) {
   let precipitation = document.querySelector("#precipitation");
   let uvi = document.querySelector("#uvi");
   precipitation.innerHTML = `${Math.round(dailyForecast[0].pop * 100)}%`;
-  uvi.innerHTML = `UV Index: <span id="rateColor"> ${Math.round(
+  uvi.innerHTML = `UV Index: <span id="rate-color"> ${Math.round(
     currentForecast.uvi
   )}, ${rateUVI()}</span>`;
+  if (rateUVI() === "Extreme") {
+    document.getElementById("rate-color").style.color = "purple";
+  } else if (rateUVI() === "Very high") {
+    document.getElementById("rate-color").style.color = "red";
+  } else if (rateUVI() === "High") {
+    document.getElementById("rate-color").style.color = "orange";
+  } else if (rateUVI() === "Moderate") {
+    document.getElementById("rate-color").style.color = "#FBC200";
+  } else {
+    document.getElementById("rate-color").style.color = "green";
+  }
 }
 
 // Rate the UV Index
 function rateUVI() {
-  if (currentForecast.uvi < 3) {
+  if (Math.round(currentForecast.uvi) < 3) {
     return "Low";
-  } else if (currentForecast.uvi < 6) {
+  } else if (Math.round(currentForecast.uvi) < 6) {
     return "Moderate";
-  } else if (currentForecast.uvi < 8) {
+  } else if (Math.round(currentForecast.uvi) < 8) {
     return "High";
-  } else if (currentForecast.uvi < 11) {
+  } else if (Math.round(currentForecast.uvi) < 11) {
     return "Very high";
   } else {
     return "Extreme";
@@ -205,11 +222,11 @@ let celsiusTemp = null;
 let dailyForecast = null;
 let currentForecast = null;
 let currentTime = null;
+let nowUTC = null;
 let celsius = document.querySelector("#celsius");
 let fahrenheit = document.querySelector("#fahrenheit");
 celsius.addEventListener("click", convertTemp);
 fahrenheit.addEventListener("click", convertTemp);
 searchForm.addEventListener("submit", getCurrentWeatherAPI);
 currentLocation.addEventListener("click", getCurrentWeatherAPI);
-
 showDefaultCity("Hanoi");
