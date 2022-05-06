@@ -13,7 +13,7 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="src/style.css" />
@@ -35,7 +35,7 @@
               <input
                 type="submit"
                 value="search"
-                class="material-icons btn btn-light col-2 me-3 ms-1"
+                class="material-symbols-outlined pulse btn btn-light col-2 me-3 ms-1"
               />
               <button class="btn btn-secondary col-3" id="current-location">
                 My location
@@ -43,32 +43,49 @@
             </form>
           </div>
           <div class="row mb-4 current-weather">
-            <div class="col-4 icon-temperature align-self-center unit-section">
-              <img src="" alt="" id="icon" /><span id="current-temp"></span
-              ><span class="units"
-                ><span id="celsius" class="active">°C</span
-                ><span class="text-secondary"
-                  >|<span id="fahrenheit" class="inactive">°F</span></span
-                >
-              </span>
-            </div>
-            <div class="col-4 text-secondary precip-humidity-wind">
-              <div>
-                <img
-                  class="precipitation-icon"
-                  src="images/precipitation.svg"
-                  alt="humidity"
-                  width="20"
-                /><span id="precipitation"></span
-                ><img
-                  class="humidity-icon"
-                  src="images/humidity.svg"
-                  alt="humidity"
-                  width="33"
-                /><span id="humidity"></span>
+            <div class="col-5 icon-temperature align-self-center">
+              <div class="row">
+                <img class="col-3" src="" alt="" id="icon" />
+                <div class="col-3" id="current-temp"></div>
+                <ul class="col-6 units-minmaxtemp">
+                  <li class="units">
+                    <span id="celsius" class="active">°C</span
+                    ><span class="text-secondary"
+                      >|<span id="fahrenheit" class="inactive">°F</span></span
+                    >
+                  </li>
+                  <li class="minmax-temp">
+                    <span class="material-symbols-outlined arrow-icon-up"
+                      >north</span
+                    ><span id="current-temp-max"></span
+                    ><span class="material-symbols-outlined arrow-icon-down"
+                      >south</span
+                    ><span id="current-temp-min"></span>
+                  </li>
+                </ul>
               </div>
-              <div id="wind"></div>
-              <div id="uvi"></div>
+            </div>
+            <div
+              class="col-3 align-self-center text-secondary precip-humidity-wind"
+            >
+              <ul>
+                <li>
+                  <img
+                    class="precipitation-icon"
+                    src="images/precipitation.svg"
+                    alt="humidity"
+                    width="20"
+                  /><span id="precipitation"></span
+                  ><img
+                    class="humidity-icon"
+                    src="images/humidity.svg"
+                    alt="humidity"
+                    width="33"
+                  /><span id="humidity"></span>
+                </li>
+                <li id="wind"></li>
+                <li id="uvi"></li>
+              </ul>
             </div>
             <div class="col-4 text-end location-date">
               <div id="city"></div>

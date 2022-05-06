@@ -12,6 +12,13 @@
   padding-bottom: 5px;
   border-radius: 10px;
 }
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
 .current-weather {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -20,25 +27,55 @@
   max-width: 140px;
   padding: 0;
 }
-.material-icons {
+.material-symbols-outlined {
   max-width: 50px;
 }
 
+.pulse {
+  animation: pulse 3s infinite;
+}
+@keyframes pulse {
+  0% {
+    font-variation-settings: "wght" 100;
+  }
+  50% {
+    font-variation-settings: "wght" 700;
+  }
+  100% {
+    font-variation-settings: "wght" 100;
+  }
+}
+
+#icon,
+#current-temp,
+.units-minmaxtemp {
+  padding: 0;
+}
+.minmax-temp {
+  padding-top: 3px;
+}
 #current-temp {
   font-size: 50px;
   line-height: 50px;
 }
 #icon {
-  vertical-align: top;
+  padding-left: 5px;
   height: 60px;
   position: relative;
   top: -5px;
 }
-.units {
-  position: relative;
-  top: -25px;
-}
 
+.arrow-icon-up,
+.arrow-icon-down {
+  font-weight: 50px;
+  font-size: 15px;
+}
+.arrow-icon-down {
+  color: gray;
+}
+#current-temp-min {
+  color: gray;
+}
 .icon-temperature,
 .precip-humidity-wind,
 .location-date {
@@ -98,9 +135,15 @@ small {
 
 .precipitation-icon {
   position: relative;
-  bottom: 6px;
+  bottom: 4px;
 }
 .humidity-icon {
   position: relative;
   bottom: 3px;
+}
+.weather-forecast-day {
+  margin-bottom: 5px;
+}
+#forecast-precipitation {
+  color: gray;
 }

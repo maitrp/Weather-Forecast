@@ -45,7 +45,7 @@ function showCurrentWeather(response) {
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = Math.round(response.data.main.temp);
 
-  // Show weather icon
+  // Show current weather icon
   let icon = document.querySelector("#icon");
   icon.setAttribute(
     "src",
@@ -123,7 +123,12 @@ function showWeatherForecast(response) {
     if (index < 7) {
       weatherForecastHTML =
         weatherForecastHTML +
-        `<div class="col forecast-column"><div class="weather-forecast-day">${day}</div>
+        `<div class="col forecast-column"><div class="weather-forecast-day">${day}</div><div><img class="precipitation-icon"
+                    src="images/precipitation.svg"
+                    alt="humidity"
+                    width="20" /><span id="forecast-precipitation">${Math.round(
+                      forecastDay.pop * 100
+                    )}%</span></div> 
                 <img src="http://openweathermap.org/img/wn/${
                   forecastDay.weather[0].icon
                 }@2x.png" alt="${
@@ -143,6 +148,10 @@ function showWeatherForecast(response) {
   weatherForecast.innerHTML = weatherForecastHTML;
 
   // Get current precipitation & UV Index via forecast API
+  let currentTempMin = document.querySelector("#current-temp-min");
+  currentTempMin.innerHTML = `${Math.round(dailyForecast[0].temp.min)}°`;
+  let currentTempMax = document.querySelector("#current-temp-max");
+  currentTempMax.innerHTML = `${Math.round(dailyForecast[0].temp.max)}°`;
   let precipitation = document.querySelector("#precipitation");
   let uvi = document.querySelector("#uvi");
   precipitation.innerHTML = `${Math.round(dailyForecast[0].pop * 100)}%`;
@@ -180,10 +189,14 @@ function rateUVI() {
 // Convert current & forecast temperature units
 function convertTemp(event) {
   let currentTemp = document.querySelector("#current-temp");
+  let currentTempMin = document.querySelector("#current-temp-min");
+  let currentTempMax = document.querySelector("#current-temp-max");
   let forecastTempMax = document.querySelectorAll(".forecast-temp-max");
   let forecastTempMin = document.querySelectorAll(".forecast-temp-min");
   if (event.target === celsius) {
     currentTemp.innerHTML = Math.round(celsiusTemp);
+    currentTempMin.innerHTML = `${Math.round(dailyForecast[0].temp.min)}°`;
+    currentTempMax.innerHTML = `${Math.round(dailyForecast[0].temp.max)}°`;
     dailyForecast.slice(1, 7).forEach(function (forecastTemp, index) {
       forecastTempMax[index].innerHTML = `${Math.round(
         forecastTemp.temp.max
@@ -198,6 +211,12 @@ function convertTemp(event) {
     celsius.classList.remove("inactive");
   } else if (event.target === fahrenheit) {
     currentTemp.innerHTML = Math.round((celsiusTemp * 9) / 5 + 32);
+    currentTempMin.innerHTML = `${Math.round(
+      (dailyForecast[0].temp.min * 9) / 5 + 32
+    )}°`;
+    currentTempMax.innerHTML = `${Math.round(
+      (dailyForecast[0].temp.max * 9) / 5 + 32
+    )}°`;
     dailyForecast.slice(1, 7).forEach(function (forecastTemp, index) {
       forecastTempMax[index].innerHTML = `${Math.round(
         (forecastTemp.temp.max * 9) / 5 + 32
