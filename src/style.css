@@ -76,7 +76,11 @@ ul {
 #current-temp-min {
   color: gray;
 }
-.icon-temperature,
+.icon-temperature {
+  padding: 10px 0 0 0;
+  margin: 0;
+}
+
 .precip-humidity-wind,
 .location-date {
   padding: 0;
@@ -87,7 +91,7 @@ ul {
 #wind,
 #uvi {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 #city {
