@@ -13,7 +13,7 @@ function showCurrentTime(timezone) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  let days = [
+  let daysFull = [
     `Sunday`,
     `Monday`,
     `Tuesday`,
@@ -22,6 +22,13 @@ function showCurrentTime(timezone) {
     `Friday`,
     `Saturday`,
   ];
+
+  let daysAbbreviation = [`Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`, `Sun`];
+  if (window.matchMedia(`(max-width: 576px)`).matches) {
+    days = daysAbbreviation;
+  } else {
+    days = daysFull;
+  }
   let day = days[nowUTC.getDay()];
   let currentDay = document.querySelector("#current-day");
   currentDay.innerHTML = `${day} ${hours}:${minutes}`;
@@ -242,6 +249,7 @@ let dailyForecast = null;
 let currentForecast = null;
 let currentTime = null;
 let nowUTC = null;
+let days = null;
 let celsius = document.querySelector("#celsius");
 let fahrenheit = document.querySelector("#fahrenheit");
 celsius.addEventListener("click", convertTemp);

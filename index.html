@@ -27,7 +27,7 @@
             <form class="input-group mb-4" id="search-form">
               <input
                 type="text"
-                class="rounded-pill form-control col-7"
+                class="rounded-pill form-control col-sm"
                 placeholder="Enter a city to search"
                 id="search-box"
                 autocomplete="off"
@@ -35,9 +35,9 @@
               <input
                 type="submit"
                 value="search"
-                class="material-symbols-outlined pulse btn btn-light col-2 me-3 ms-1"
+                class="material-symbols-outlined pulse btn btn-light col-sm me-3 ms-1"
               />
-              <button class="btn btn-secondary col-3" id="current-location">
+              <button class="btn btn-secondary col-sm" id="current-location">
                 My location
               </button>
             </form>
@@ -46,8 +46,8 @@
             <div class="col-5 icon-temperature align-self-center">
               <div class="row">
                 <img class="col-3" src="" alt="" id="icon" />
-                <div class="col-3" id="current-temp"></div>
-                <ul class="col-6 units-minmaxtemp">
+                <div class="col-3 align-self-center" id="current-temp"></div>
+                <ul class="col-6 units-minmaxtemp align-self-center">
                   <li class="units">
                     <span id="celsius" class="active">°C</span
                     ><span class="text-secondary"
@@ -67,18 +67,18 @@
               </div>
             </div>
             <div
-              class="col-3 align-self-center text-secondary precip-humidity-wind"
+              class="col-4 align-self-center text-secondary precip-humidity-wind"
             >
               <ul>
                 <li>
                   <img
-                    class="precipitation-icon"
+                    class="precipitation-icon img-fluid"
                     src="images/precipitation.svg"
                     alt="humidity"
                     width="20"
                   /><span id="precipitation"></span
                   ><img
-                    class="humidity-icon"
+                    class="humidity-icon img-fluid"
                     src="images/humidity.svg"
                     alt="humidity"
                     width="33"
@@ -88,7 +88,7 @@
                 <li id="uvi"></li>
               </ul>
             </div>
-            <div class="col-4 text-end location-date">
+            <div class="col-3 text-end location-date">
               <div id="city"></div>
               <div class="text-secondary" id="current-day"></div>
               <div class="text-secondary" id="description"></div>

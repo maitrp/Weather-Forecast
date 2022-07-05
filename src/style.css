@@ -85,13 +85,14 @@ ul {
 .location-date {
   padding: 0;
   margin: 0;
+  font-size: 14px;
 }
+
 #precipitation,
 #humidity,
 #wind,
 #uvi {
   margin: 0;
-  font-size: 14px;
 }
 
 #city {
@@ -100,15 +101,9 @@ ul {
 }
 #current-day,
 #description {
-  font-size: 15px;
   margin-top: 5px;
 }
-#city,
-#current-day,
-#description {
-  margin-left: 0;
-  margin-right: 0;
-}
+
 #description:first-letter {
   text-transform: capitalize;
 }
@@ -150,4 +145,31 @@ small {
 }
 #forecast-precipitation {
   color: gray;
+}
+
+@media (max-width: 576px) {
+  form input::placeholder,
+  #current-location {
+    font-size: 0.7em;
+  }
+
+  .icon-temperature,
+  .precip-humidity-wind,
+  .location-date {
+    font-size: 0.7em;
+  }
+
+  #current-temp {
+    font-size: 30px;
+  }
+
+  .icon-temperature img {
+    max-width: 30px;
+  }
+  .precipitation-icon {
+    max-width: 0.9em;
+  }
+  #forecast-precipitation {
+    font-size: 0.9em;
+  }
 }
