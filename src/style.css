@@ -153,7 +153,7 @@ small {
   }
 
   #current-temp {
-    font-size: 2.9em;
+    font-size: 2.8em;
   }
 
   .precipitation-icon {
@@ -161,7 +161,7 @@ small {
   }
 
   .humidity-icon {
-    max-width: 1.6rem;
+    max-width: 1.7rem;
   }
 
   #forecast-precipitation {
