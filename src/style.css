@@ -51,24 +51,16 @@ ul {
 .units-minmaxtemp {
   padding: 0;
 }
-.minmax-temp {
-  padding-top: 3px;
-}
+
 #current-temp {
   font-size: 50px;
   line-height: 50px;
-}
-#icon {
-  padding-left: 5px;
-  height: 60px;
-  position: relative;
-  top: -5px;
 }
 
 .arrow-icon-up,
 .arrow-icon-down {
   font-weight: 50px;
-  font-size: 15px;
+  font-size: 1.1em;
 }
 .arrow-icon-down {
   color: gray;
@@ -107,11 +99,12 @@ ul {
 #description:first-letter {
   text-transform: capitalize;
 }
-.units .inactive {
+
+ul .units .inactive {
   cursor: pointer;
   color: gray;
 }
-.units .active {
+ul .units .active {
   cursor: auto;
   color: black;
 }
@@ -132,14 +125,6 @@ small {
   border-radius: 10px;
 }
 
-.precipitation-icon {
-  position: relative;
-  bottom: 4px;
-}
-.humidity-icon {
-  position: relative;
-  bottom: 3px;
-}
 .weather-forecast-day {
   margin-bottom: 5px;
 }
@@ -150,25 +135,31 @@ small {
 @media (max-width: 576px) {
   form input::placeholder,
   #current-location {
+    inline-size: min-content;
     font-size: 0.7em;
   }
 
-  .icon-temperature,
+  .current-weather {
+    margin-top: 0;
+  }
+
+  .icon-temperature {
+    font-size: 0.7em;
+  }
+
   .precip-humidity-wind,
   .location-date {
-    font-size: 0.7em;
+    font-size: 0.6rem;
   }
 
   #current-temp {
-    font-size: 30px;
+    font-size: 2.9em;
   }
 
-  .icon-temperature img {
-    max-width: 30px;
-  }
   .precipitation-icon {
-    max-width: 0.9em;
+    max-width: 1rem;
   }
+
   #forecast-precipitation {
     font-size: 0.9em;
   }

@@ -23,7 +23,7 @@ function showCurrentTime(timezone) {
     `Saturday`,
   ];
 
-  let daysAbbreviation = [`Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`, `Sun`];
+  let daysAbbreviation = [`Sun`, `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`];
   if (window.matchMedia(`(max-width: 576px)`).matches) {
     days = daysAbbreviation;
   } else {
@@ -130,7 +130,7 @@ function showWeatherForecast(response) {
     if (index < 7) {
       weatherForecastHTML =
         weatherForecastHTML +
-        `<div class="col forecast-column"><div class="weather-forecast-day">${day}</div><div><img class="precipitation-icon"
+        `<div class="col forecast-column"><div class="weather-forecast-day">${day}</div><div class="d-flex align-items-center justify-content-center"><img class="precipitation-icon img-fluid"
                     src="images/precipitation.svg"
                     alt="humidity"
                     width="20" /><span id="forecast-precipitation">${Math.round(
