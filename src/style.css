@@ -160,6 +160,10 @@ small {
     max-width: 1rem;
   }
 
+  .humidity-icon {
+    max-width: 1.6rem;
+  }
+
   #forecast-precipitation {
     font-size: 0.9em;
   }
