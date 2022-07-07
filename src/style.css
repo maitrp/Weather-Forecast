@@ -55,6 +55,7 @@ ul {
 #current-temp {
   font-size: 50px;
   line-height: 50px;
+  inline-size: min-content;
 }
 
 .arrow-icon-up,
@@ -133,18 +134,25 @@ small {
 }
 
 @media (max-width: 576px) {
-  form input::placeholder,
-  #current-location {
+  form input::placeholder {
     inline-size: min-content;
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
 
   .current-weather {
     margin-top: 0;
   }
 
+  #current-temp {
+    font-size: 2.7em;
+  }
+
   .icon-temperature {
     font-size: 0.7em;
+  }
+
+  ul .units {
+    font-size: 1.2em;
   }
 
   .precip-humidity-wind,
@@ -152,8 +160,8 @@ small {
     font-size: 0.6rem;
   }
 
-  #current-temp {
-    font-size: 2.8em;
+  #city {
+    font-size: 1.3em;
   }
 
   .precipitation-icon {
@@ -165,6 +173,6 @@ small {
   }
 
   #forecast-precipitation {
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
 }

@@ -141,7 +141,7 @@ function showWeatherForecast(response) {
                 }@2x.png" alt="${
           forecastDay.weather[0].description
         }" width="50" />
-                <div class="forecast-temp">
+                <div class="px-1 forecast-temp">
                   <span class="forecast-temp-max">${Math.round(
                     forecastDay.temp.max
                   )}°</span> <span class="forecast-temp-min text-secondary"
