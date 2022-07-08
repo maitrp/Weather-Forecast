@@ -1,3 +1,9 @@
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 .container {
   margin: 80px auto;
   max-width: 600px;
@@ -53,7 +59,7 @@ ul {
 }
 
 #current-temp {
-  font-size: 50px;
+  font-size: 35px;
   line-height: 50px;
   inline-size: min-content;
 }
@@ -148,11 +154,11 @@ small {
   }
 
   .icon-temperature {
-    font-size: 0.7em;
+    font-size: 0.5em;
   }
 
   ul .units {
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
 
   .precip-humidity-wind,

@@ -82,20 +82,16 @@ function changeBackgroundImage() {
   let hours = nowUTC.getHours();
   if (hours < 6) {
     document.body.style.backgroundImage = "url(images/night.svg)";
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center -200px";
+    document.body.style.backgroundPosition = "left -20em";
   } else if (hours < 12) {
     document.body.style.backgroundImage = "url(images/morning.svg)";
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundPosition = "right -5em";
   } else if (hours < 18) {
     document.body.style.backgroundImage = "url(images/afternoon.svg)";
     document.body.style.backgroundPosition = "top";
-    document.body.style.backgroundSize = "cover";
   } else if (hours < 24) {
     document.body.style.backgroundImage = "url(images/evening.svg)";
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "top -120px left";
+    document.body.style.backgroundPosition = "top -9em left -1em";
   }
 }
 
