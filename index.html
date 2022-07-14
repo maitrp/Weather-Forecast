@@ -24,28 +24,26 @@
       <div class="card mt-5">
         <div class="card-body">
           <div class="row">
-            <form class="input-group mb-3" id="search-form">
+            <form class="search-bar mb-3 col" id="search-form">
               <input
                 type="text"
-                class="rounded-pill form-control col-sm"
+                class="search-input"
                 placeholder="Enter a city to search"
                 id="search-box"
                 autocomplete="off"
               />
-              <input
-                type="submit"
-                value="search"
-                class="material-symbols-outlined pulse btn btn-light col-sm me-2 ms-1"
-              />
-              <button
-                class="btn btn-secondary col-sm d-none d-sm-block"
-                id="current-location"
-              >
-                My location
+              <button class="material-symbols-outlined pulse search-submit">
+                search
               </button>
             </form>
+            <button
+              class="btn btn-secondary col d-none d-sm-block"
+              id="current-location"
+            >
+              My location
+            </button>
           </div>
-          <div class="row mb-4 current-weather align-items-center">
+          <div class="row current-weather align-items-center">
             <div class="col-5 icon-temperature">
               <div class="row align-items-center">
                 <img class="col-3 img-fluid" src="" alt="" id="icon" />
