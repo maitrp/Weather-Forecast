@@ -1,3 +1,7 @@
+:root {
+  --primary-color: orange;
+}
+
 body {
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -8,7 +12,7 @@ body {
 .container {
   max-width: 600px;
   font-family: "Space Mono", monospace;
-  color: orange;
+  color: var(--primary-color);
 }
 
 .card {
@@ -19,21 +23,34 @@ body {
 }
 
 .search-bar {
-  padding: 0;
+  --size: 35px;
+  background: white;
   display: flex;
-  border: 2px solid pink;
+  border: 2px solid var(--primary-color);
   border-radius: 100vh;
+  margin: 0.5rem;
+  padding: 2px;
+  transition: all 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.search-bar:focus-within {
+  outline: 1px solid;
 }
 
 form .search-input {
   flex-grow: 1;
   border: 0;
   background: transparent;
+  outline: 0;
 }
 
 form .search-submit {
-  background: transparent;
+  background: var(--primary-color);
   border: 0;
+  border-radius: 50%;
+  color: white;
+  width: var(--size);
+  height: var(--size);
 }
 
 ul {
@@ -48,7 +65,14 @@ ul {
 
 #current-location {
   max-width: 25%;
+  border: 2px solid var(--primary-color);
+  border-radius: 1vh;
+  background: white;
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+  padding: 0.5em 0.5em;
 }
+
 .material-symbols-outlined {
   max-width: 50px;
 }

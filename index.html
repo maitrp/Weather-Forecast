@@ -23,8 +23,8 @@
     <div class="container">
       <div class="card mt-5">
         <div class="card-body">
-          <div class="row">
-            <form class="search-bar mb-3 col" id="search-form">
+          <div class="row align-items-center">
+            <form class="search-bar col" id="search-form">
               <input
                 type="text"
                 class="search-input"
@@ -32,12 +32,16 @@
                 id="search-box"
                 autocomplete="off"
               />
-              <button class="material-symbols-outlined pulse search-submit">
+              <button
+                type="submit"
+                class="material-symbols-outlined pulse search-submit"
+              >
                 search
               </button>
             </form>
             <button
-              class="btn btn-secondary col d-none d-sm-block"
+              type="submit"
+              class="col d-none d-sm-block"
               id="current-location"
             >
               My location
