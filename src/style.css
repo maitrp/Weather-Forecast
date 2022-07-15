@@ -1,5 +1,6 @@
 :root {
   --primary-color: orange;
+  --transition-mode: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 body {
@@ -30,17 +31,19 @@ body {
   border-radius: 100vh;
   margin: 0.5rem;
   padding: 2px;
-  transition: all 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: all 300ms var(--transition-mode);
 }
 
 .search-bar:focus-within {
   outline: 1px solid;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
 
 form .search-input {
   flex-grow: 1;
   border: 0;
   background: transparent;
+  margin-left: 0.5em;
   outline: 0;
 }
 
@@ -51,6 +54,13 @@ form .search-submit {
   color: white;
   width: var(--size);
   height: var(--size);
+  transition: background 300ms var(--transition-mode);
+}
+
+form .search-submit:hover {
+  background: white;
+  color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
 
 ul {
@@ -60,7 +70,21 @@ ul {
 }
 
 .current-weather {
+  display: flex;
+  flex-wrap: nowrap;
   margin-block: 1rem 1.5rem;
+}
+
+.current-weather > *:nth-child(1) {
+  flex: 1 1 45%;
+}
+
+.current-weather > *:nth-child(2) {
+  flex: 1 1 32%;
+}
+
+.current-weather > *:nth-child(3) {
+  flex: 1 1 23%;
 }
 
 #current-location {
@@ -71,10 +95,13 @@ ul {
   color: var(--primary-color);
   margin-right: 0.5rem;
   padding: 0.5em 0.5em;
+  transition: all 250ms var(--transition-mode);
 }
 
-.material-symbols-outlined {
-  max-width: 50px;
+#current-location:hover {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
 
 .pulse {
@@ -116,8 +143,12 @@ ul {
   color: gray;
 }
 .icon-temperature {
-  padding: 10px 0 0 0;
-  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+#icon {
+  max-width: 25%;
 }
 
 .precip-humidity-wind,
@@ -177,48 +208,4 @@ small {
 }
 #forecast-precipitation {
   color: gray;
-}
-
-@media (max-width: 576px) {
-  form input::placeholder {
-    inline-size: min-content;
-    font-size: 0.8em;
-  }
-
-  .current-weather {
-    margin-top: 0;
-  }
-
-  #current-temp {
-    font-size: 2.7em;
-  }
-
-  .icon-temperature {
-    font-size: 0.5em;
-  }
-
-  ul .units {
-    font-size: 1.3em;
-  }
-
-  .precip-humidity-wind,
-  .location-date {
-    font-size: 0.6rem;
-  }
-
-  #city {
-    font-size: 1.3em;
-  }
-
-  .precipitation-icon {
-    max-width: 1rem;
-  }
-
-  .humidity-icon {
-    max-width: 1.7rem;
-  }
-
-  #forecast-precipitation {
-    font-size: 0.8em;
-  }
 }

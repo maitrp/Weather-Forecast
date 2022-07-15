@@ -48,30 +48,28 @@
             </button>
           </div>
           <div class="row current-weather align-items-center">
-            <div class="col-5 icon-temperature">
-              <div class="row align-items-center">
-                <img class="col-3 img-fluid" src="" alt="" id="icon" />
-                <div class="col-2" id="current-temp"></div>
-                <ul class="col-6 units-minmaxtemp">
-                  <li class="units">
-                    <span id="celsius" class="active">°C</span
-                    ><span class="text-secondary"
-                      >|<span id="fahrenheit" class="inactive">°F</span></span
-                    >
-                  </li>
-                  <li class="minmax-temp">
-                    <span class="material-symbols-outlined pulse arrow-icon-up"
-                      >north</span
-                    ><span id="current-temp-max"></span
-                    ><span
-                      class="material-symbols-outlined pulse arrow-icon-down"
-                      >south</span
-                    ><span id="current-temp-min"></span>
-                  </li>
-                </ul>
-              </div>
+            <div class="row align-items-center icon-temperature">
+              <img class="img-fluid" src="" alt="" id="icon" />
+              <div id="current-temp"></div>
+              <ul class="units-minmaxtemp">
+                <li class="units">
+                  <span id="celsius" class="active">°C</span
+                  ><span class="text-secondary"
+                    >|<span id="fahrenheit" class="inactive">°F</span></span
+                  >
+                </li>
+                <li class="minmax-temp">
+                  <span class="material-symbols-outlined pulse arrow-icon-up"
+                    >north</span
+                  ><span id="current-temp-max"></span
+                  ><span class="material-symbols-outlined pulse arrow-icon-down"
+                    >south</span
+                  ><span id="current-temp-min"></span>
+                </li>
+              </ul>
             </div>
-            <div class="col-4 text-secondary precip-humidity-wind">
+
+            <div class="text-secondary precip-humidity-wind">
               <ul>
                 <li class="d-flex align-items-center">
                   <img
@@ -91,7 +89,7 @@
                 <li id="uvi"></li>
               </ul>
             </div>
-            <div class="col-3 text-end location-date">
+            <div class="text-end location-date">
               <div id="city"></div>
               <div class="text-secondary" id="current-day"></div>
               <div class="text-secondary" id="description"></div>
