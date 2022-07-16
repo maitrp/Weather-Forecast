@@ -45,7 +45,7 @@ body {
 }
 
 .search-bar:focus-within {
-  outline: 1px solid;
+  border: 3px solid var(--primary-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
 
@@ -61,7 +61,7 @@ form .search-input {
 form .search-submit {
   background: var(--primary-color);
   border: 0;
-  border-radius: 50%;
+  border-radius: 100vmax;
   color: white;
   width: var(--size);
   height: var(--size);
@@ -101,7 +101,7 @@ ul {
   display: flex;
   flex-wrap: nowrap;
   word-spacing: -0.3em;
-  margin-block: 1rem 1.5rem;
+  margin-block: 2rem 2.5rem;
   font-size: var(--font-size-primary);
 }
 
