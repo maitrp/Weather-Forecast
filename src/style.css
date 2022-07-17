@@ -13,7 +13,7 @@
 }
 
 body {
-  min-height: 0vw;
+  min-height: 1vw;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
