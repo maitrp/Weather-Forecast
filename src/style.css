@@ -145,7 +145,7 @@ ul {
 }
 
 #current-temp {
-  min-height: 1vw;
+  font-size: max(1rem, min(0.3333rem + 3.3333vw, 2.5rem));
   font-size: var(--font-size-large);
   inline-size: min-content;
 }
