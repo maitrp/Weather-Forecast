@@ -145,7 +145,7 @@ ul {
 }
 
 #current-temp {
-  min-height: 0vw;
+  min-height: 0;
   font-size: var(--font-size-large);
   inline-size: min-content;
 }
