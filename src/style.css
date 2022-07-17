@@ -1,6 +1,6 @@
 :root {
+  min-height: 0;
   --primary-color: orange;
-  min-height: 0vw;
   --transition-mode: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
   /* max vw 900px with slightly roundup */
