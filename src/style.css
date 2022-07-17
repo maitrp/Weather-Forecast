@@ -13,7 +13,6 @@
 }
 
 body {
-  min-height: 1vw;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -146,6 +145,7 @@ ul {
 }
 
 #current-temp {
+  min-height: 1vw;
   font-size: var(--font-size-large);
   inline-size: min-content;
 }
