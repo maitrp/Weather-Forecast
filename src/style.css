@@ -146,7 +146,7 @@ ul {
 
 #current-temp {
   font-size: max(1rem, min(0.3333rem + 3.3333vw, 2.5rem));
-  font-size: var(--font-size-large);
+  font-size: clamp(1rem, 0.3333rem + 3.3333vw, 2.5rem);
   inline-size: min-content;
 }
 
