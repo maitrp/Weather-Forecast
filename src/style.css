@@ -1,5 +1,6 @@
 :root {
   --primary-color: orange;
+  min-height: 0vw;
   --transition-mode: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
   /* max vw 900px with slightly roundup */
@@ -17,6 +18,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
+  min-height: 100vh;
 }
 
 .container {
@@ -61,7 +63,7 @@ form .search-input {
 form .search-submit {
   background: var(--primary-color);
   border: 0;
-  border-radius: calc(100vmax - 2px);
+  border-radius: 100vh;
   color: white;
   width: var(--size);
   height: var(--size);
@@ -69,8 +71,7 @@ form .search-submit {
 }
 
 form .search-submit:hover {
-  background: white;
-  color: var(--primary-color);
+  filter: hue-rotate(-20deg);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
 
@@ -152,7 +153,7 @@ ul {
 
 .arrow-icon-up,
 .arrow-icon-down {
-  font-weight: 900;
+  font-weight: bold;
   font-size: 1.1em;
 }
 
@@ -175,6 +176,10 @@ ul {
 
 #description:first-letter {
   text-transform: capitalize;
+}
+
+ul .units {
+  font-weight: bold;
 }
 
 ul .units .inactive {
