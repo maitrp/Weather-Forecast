@@ -1,5 +1,4 @@
 :root {
-  min-height: 0;
   --primary-color: orange;
   --transition-mode: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
@@ -146,6 +145,7 @@ ul {
 }
 
 #current-temp {
+  min-height: 0vw;
   font-size: var(--font-size-large);
   inline-size: min-content;
 }
