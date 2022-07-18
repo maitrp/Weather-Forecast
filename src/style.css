@@ -38,7 +38,7 @@ body {
   background: white;
   display: flex;
   border: 2px solid var(--primary-color);
-  border-radius: 100px; /* 100vmax not supported in old Safari */
+  border-radius: 100px;
   margin: 0.5rem;
   padding: 2px;
   transition: all 200ms var(--transition-mode);
@@ -61,7 +61,7 @@ form .search-input {
 form .search-submit {
   background: var(--primary-color);
   border: 0;
-  border-radius: 100px; /* 100vmax not supported in old Safari */
+  border-radius: 50%; /* 100vmax not supported in old Safari */
   color: white;
   width: var(--size);
   height: var(--size);
