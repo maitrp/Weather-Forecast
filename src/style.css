@@ -64,7 +64,7 @@ form .search-input {
 form .search-submit {
   background: var(--primary-color);
   border: 0;
-  border-radius: 100vmax;
+  border-radius: 100px;
   color: white;
   width: var(--size);
   height: var(--size);
@@ -103,9 +103,9 @@ ul {
   display: flex;
   flex-wrap: nowrap;
   word-spacing: -0.3em;
-  margin-top: 1rem;
+  margin-top: 1rem; /* margin-block not supported in old Safari */
   margin-bottom: 1.5rem;
-  font-size: var(--font-size-primary, --font-size-primary-fallback);
+  font-size: var(--font-size-primary, var(--font-size-primary-fallback));
 }
 
 .current-weather > *:nth-child(1) {
@@ -149,7 +149,7 @@ ul {
 }
 
 #current-temp {
-  font-size: var(--font-size-large, --font-size-large-fallback);
+  font-size: var(--font-size-large, var(--font-size-large-fallback));
   inline-size: min-content;
 }
 
@@ -172,7 +172,7 @@ ul {
 }
 
 #city {
-  font-size: var(--font-size-medium, --font-size-medium-fallback);
+  font-size: var(--font-size-medium, var(--font-size-medium-fallback));
   line-height: 1em;
 }
 
