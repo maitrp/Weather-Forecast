@@ -148,7 +148,7 @@ ul {
 }
 
 #current-temp {
-  font-size: var(--font-size-large, var(--font-size-large-safari));
+  font-size: var(--font-size-large, 50px);
   inline-size: min-content;
 }
 
