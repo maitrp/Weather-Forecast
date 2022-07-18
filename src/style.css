@@ -4,12 +4,15 @@
 
   /* max vw 900px with slightly roundup */
   --font-size-primary: clamp(0.5rem, 0.25rem + 1.38vw, 1rem);
+  --font-size-primary-fallback: max(0.5rem, min(0.25rem + 1.38vw, 1rem));
 
   /* max vw 1280px */
   --font-size-large: clamp(1rem, 0.3333rem + 3.3333vw, 2.5rem);
+  --font-size-large-fallback: max(1rem, min(0.3333rem + 3.3333vw, 2.5rem));
 
   /* max vw 1280px */
   --font-size-medium: clamp(0.8rem, 0.5667rem + 1.1667vw, 1.5rem);
+  --font-size-medium-fallback: max(0.8rem, min(0.5667rem + 1.1667vw, 1.5rem));
 }
 
 body {
@@ -61,7 +64,7 @@ form .search-input {
 form .search-submit {
   background: var(--primary-color);
   border: 0;
-  border-radius: 100vh;
+  border-radius: 100vmax;
   color: white;
   width: var(--size);
   height: var(--size);
@@ -100,8 +103,9 @@ ul {
   display: flex;
   flex-wrap: nowrap;
   word-spacing: -0.3em;
-  margin-block: 1rem 1.5rem;
-  font-size: var(--font-size-primary);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: var(--font-size-primary, --font-size-primary-fallback);
 }
 
 .current-weather > *:nth-child(1) {
@@ -145,7 +149,7 @@ ul {
 }
 
 #current-temp {
-  font-size: clamp(1rem, 0.3333rem + 3.3333vw, 2.5rem);
+  font-size: var(--font-size-large, --font-size-large-fallback);
   inline-size: min-content;
 }
 
@@ -168,7 +172,7 @@ ul {
 }
 
 #city {
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-medium, --font-size-medium-fallback);
   line-height: 1em;
 }
 
@@ -204,8 +208,8 @@ small {
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  padding: 1px 0;
+  justify-content: baseline;
+  padding: 5px 0;
   margin: 0 2px;
   border-radius: 10px;
 }
@@ -225,4 +229,8 @@ small {
 
 .humidity-icon {
   max-width: min(2rem, 3vw + 0.8rem);
+}
+
+.forecast-temp {
+  font-size: min(1rem, 1vw + 0.7rem);
 }
