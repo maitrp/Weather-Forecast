@@ -3,16 +3,13 @@
   --transition-mode: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
   /* max vw 900px with slightly roundup */
-  --font-size-primary: clamp(0.5rem, 0.25rem + 1.38vw, 1rem);
-  --font-size-primary-fallback: max(0.5rem, min(0.25rem + 1.38vw, 1rem));
+  --font-size-primary: max(0.5rem, min(0.25rem + 1.38vw, 1rem));
 
   /* max vw 1280px */
-  --font-size-large: clamp(1rem, 0.3333rem + 3.3333vw, 2.5rem);
-  --font-size-large-fallback: max(1rem, min(0.3333rem + 3.3333vw, 2.5rem));
+  --font-size-large: max(1rem, min(0.3333rem + 3.3333vw, 2.5rem));
 
   /* max vw 1280px */
-  --font-size-medium: clamp(0.8rem, 0.5667rem + 1.1667vw, 1.5rem);
-  --font-size-medium-fallback: max(0.8rem, min(0.5667rem + 1.1667vw, 1.5rem));
+  --font-size-medium: max(0.8rem, min(0.5667rem + 1.1667vw, 1.5rem));
 }
 
 body {
@@ -41,7 +38,7 @@ body {
   background: white;
   display: flex;
   border: 2px solid var(--primary-color);
-  border-radius: 100vmax;
+  border-radius: 100px; /* 100vmax not supported in old Safari */
   margin: 0.5rem;
   padding: 2px;
   transition: all 200ms var(--transition-mode);
@@ -64,7 +61,7 @@ form .search-input {
 form .search-submit {
   background: var(--primary-color);
   border: 0;
-  border-radius: 100px;
+  border-radius: 100px; /* 100vmax not supported in old Safari */
   color: white;
   width: var(--size);
   height: var(--size);
@@ -105,7 +102,7 @@ ul {
   word-spacing: -0.3em;
   margin-top: 1rem; /* margin-block not supported in old Safari */
   margin-bottom: 1.5rem;
-  font-size: var(--font-size-primary, var(--font-size-primary-fallback));
+  font-size: var(--font-size-primary);
 }
 
 .current-weather > *:nth-child(1) {
@@ -149,7 +146,7 @@ ul {
 }
 
 #current-temp {
-  font-size: var(--font-size-large, var(--font-size-large-fallback));
+  font-size: var(--font-size-large);
   inline-size: min-content;
 }
 
@@ -172,7 +169,7 @@ ul {
 }
 
 #city {
-  font-size: var(--font-size-medium, var(--font-size-medium-fallback));
+  font-size: var(--font-size-medium);
   line-height: 1em;
 }
 
