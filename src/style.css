@@ -6,8 +6,7 @@
   --font-size-primary: max(0.5rem, min(0.25rem + 1.38vw, 1rem));
 
   /* max vw 1280px */
-  --font-size-large: clamp(1rem, 0.3333rem + 3.3333vw, 2.5rem);
-  --font-size-large-safari: max(1rem, min(0.3333rem + 3.3333vw, 2.5rem));
+  --font-size-large: max(1rem, min(0.3333rem + 3.3333vw, 2.5rem));
 
   /* max vw 1280px */
   --font-size-medium: max(0.8rem, min(0.5667rem + 1.1667vw, 1.5rem));
@@ -148,7 +147,7 @@ ul {
 }
 
 #current-temp {
-  font-size: var(--font-size-large, 50px);
+  font-size: var(--font-size-large);
   inline-size: min-content;
 }
 
