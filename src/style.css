@@ -60,8 +60,9 @@ form .search-input {
 
 form .search-submit {
   background: var(--primary-color);
+  padding: 0;
   border: 0;
-  border-radius: 50%; /* 100vmax not supported in old Safari */
+  border-radius: 100vmax; /* 100vmax not supported in old Safari */
   color: white;
   width: var(--size);
   height: var(--size);
