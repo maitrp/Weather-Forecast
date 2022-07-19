@@ -1,6 +1,7 @@
 :root {
   --primary-color: orange;
   --transition-mode: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 
   /* max vw 900px with slightly roundup */
   --font-size-primary: max(0.5rem, min(0.25rem + 1.38vw, 1rem));
@@ -24,6 +25,7 @@ body {
   font-family: "Space Mono", monospace;
   color: var(--primary-color);
   padding-inline: 0.2em;
+  margin-bottom: 3rem;
 }
 
 .card {
@@ -45,7 +47,7 @@ body {
 
 .search-bar:focus-within {
   border: 3px solid var(--primary-color);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--box-shadow);
 }
 
 form .search-input {
@@ -70,7 +72,7 @@ form .search-submit {
 
 form .search-submit:hover {
   filter: hue-rotate(-20deg);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--box-shadow);
 }
 
 #current-location {
@@ -87,7 +89,7 @@ form .search-submit:hover {
 #current-location:hover {
   background: var(--primary-color);
   color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--box-shadow);
 }
 
 ul {
@@ -186,6 +188,10 @@ ul .units .inactive {
   color: gray;
 }
 
+ul .units .inactive:hover {
+  color: orange;
+}
+
 ul .units .active {
   cursor: inital;
   color: black;
@@ -209,6 +215,11 @@ small {
   padding: 5px 0;
   margin: 0 2px;
   border-radius: 10px;
+}
+
+.forecast-column:hover {
+  outline: 2px solid orange;
+  box-shadow: var(--box-shadow);
 }
 
 .weather-forecast-day {
