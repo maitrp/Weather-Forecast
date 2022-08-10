@@ -124,7 +124,7 @@ function showWeatherForecast(response) {
         weatherForecastHTML +
         `<div class="col forecast-column"><div class="weather-forecast-day">${day}</div><div class="d-flex align-items-center justify-content-center"><img class="precipitation-icon img-fluid"
                     src="images/precipitation.svg"
-                    alt="humidity" /><span id="forecast-precipitation">${Math.round(
+                    alt="precipitation" /><span id="forecast-precipitation">${Math.round(
                       forecastDay.pop * 100
                     )}%</span></div> 
                 <img src="http://openweathermap.org/img/wn/${
